@@ -1331,4 +1331,23 @@ class PersonTest < ActiveSupport::TestCase
     assert_includes non_abusers, not_abuser
   end
 
+  should 'have extra fields for professor' do
+    professor = create_user('professor').person
+
+    extra_fields = [:lattes, :fields_of_interest]
+
+    extra_fields.each do |field|
+      assert professor.respond_to? field
+    end
+
+  end
+
+  should 'return extra fields for professor' do
+    fields = ['lattes', 'fields_of_interest']
+
+    fields.each do |field|
+      assert_includes Person.fields, field
+    end
+  end
+
 end
