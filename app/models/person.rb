@@ -129,7 +129,6 @@ class Person < Profile
   end
 
   FIELDS = %w[
-  preferred_domain
   nickname
   sex
   address
@@ -152,9 +151,12 @@ class Person < Profile
   contact_phone
   contact_information
   description
+  preferred_domain
   image
   district
   address_reference
+  lattes
+  fields_of_interest
   ]
 
   validates_multiparameter_assignments
