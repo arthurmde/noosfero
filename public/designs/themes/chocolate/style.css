@@ -1,78 +1,122 @@
-@import url(../profile-base/style.css);
 
-/************************** user bar ***************************/
+/* * * Footer * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#user a,
-#user a strong {
-  color: #8F5902;
+#theme-footer {
+  backg   round: #E4E4E4;
+  width: auto;
+  margin: -5px 0px;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
 }
 
-/************************** content ***************************/
-
-#content .block-title,
-#content .main-block h1, #not-found h1, #access-denied h1 {
-  border-bottom:2px solid #8F5902;
-  color: #8F5902;
+#footer-content {
+  background: #EEE;
+  margin: -5px auto;
+  padding: 30px 20px 20px 20px;
+  width: 921px;
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  font-size: 14px;
 }
 
-.profile-image-block p {
-  color: #8F5902;
+#footer-content ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
 }
 
-.block a {
-  color: #8F5902;
+#footer-content li {
+  margin: 0px;
+  padding: 0px 47px;
+  display: block;
+  float: left;
 }
 
-.block a:visited {
-  color: #C17D11;
+#footer-content li ul {
+  padding: 5px 0px;
 }
 
-.control-panel a,
-.control-panel a:visited {
-  color: #000;
+#footer-content li li {
+  float: none;
+  display: block;
+  padding: 5px 0px;
 }
 
-.controller-profile_editor .control-panel a:hover {
-  background-color: #8F5902;
-  color: #FFF;
+#footer-content a {
+  color: #003366;
+}
+#footer-content a:hover {
+  color: #333;
+  text-decoration: underline;
 }
 
-#content .link-list-block li a:hover {
-  background-color: #8F5902;
+#external-sns a {
+  padding-left: 20px;
+  background: url(images/icons/icon-twitter.png) 0% 50% no-repeat;
+}
+#external-sns .facebook a {
+  background-image: url(images/icons/icon-facebook.png);
+}
+#external-sns .flickr a {
+  background-image: url(images/icons/icon-flickr.png);
+}
+#external-sns .youtube a {
+  background-image: url(images/icons/icon-youtube.png);
+}
+#external-sns .vimeo a {
+  background-image: url(images/icons/icon-vimeo.png);
+}
+#external-sns .identica a {
+  background-image: url(images/icons/icon-identica.png);
 }
 
-#content .link-list-block li a.link-this-page {
-  background-color: #C17D11;
-  border-right:2px solid #8F5902;
+#footer-login > input {
+  position: relative;
+  width: auto;
+  display: block;
+  margin: 10px 0px;
+  padding: 5px 2px;
+  border: none;
 }
 
-.template-rightbar #content .link-list-block li a.link-this-page,
-#content .box-3 .link-list-block li a.link-this-page {
-  border-left: 2px solid #8F5902;
+#footer-search input {
+  width: 100%;
+  padding: 5px 2px;
+  border: none;
+  -webkit-box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
 }
 
-/************** blog **************/
-
-#content .blog-post .title a:hover {
-  color: #8F5902;
+#theme-footer #language-chooser {
+  clear: both;
+  margin-top: 1.5em;
+}
+#license-on-footer {
+  padding: 170px 48px 0;
+  font-size: 11px;
+  text-align: left;
+  color: #003366;
 }
 
-/**************************** Comments *******************************/
-
-#content .comments h3 {
-  color: #8F5902;
-  border-bottom: 2px solid #8F5902;
+#footer-cc {
+  display: block;
+  width: 24px;
+  height: 24px;
+  background: url(images/cc.png);
+  float:left;
+  margin-right: 5px;
 }
 
-.post_comment_box h4 {
-  background-color: #8F5902;
-  color: #FFF;
+#footer-cc span {
+  display: none;
 }
 
-/************************** theme footer ***************************/
-
-#footer-content a,
-#footer-content a:hover,
-#footer-content a:visited {
-  color: #8F5902;
+#powered-by-noosfero {
+  font-size: 11px;
+  text-align: center;
 }
+
+#user { display: none; }
