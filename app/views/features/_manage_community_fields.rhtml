@@ -9,6 +9,7 @@
     <th><%= _('Required') %></th>
     <th><%= _('Display on creation?') %></th>
   </tr>
+
   <% @community_fields.each do |field| %>
   <tr>
     <td><label for="community_fields[<%= field %>][active]"><%= _(field.humanize) %></label></td>
@@ -28,7 +29,26 @@
 
   </tr>
   <% end %>
+
+  <tr style="border-top:solid 2px #000">
+    <td><strong>Check all</strong> </td>
+    <td><img src="/images/check.png" class="community_checkbox_check_all" id="community_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="community_checkbox_check_all" id="community_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="community_checkbox_check_all" id="community_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
+  <tr>
+    <td><strong>Uncheck all</strong> </td>
+    <td><img src="/images/uncheck.png" class="community_checkbox_uncheck_all" id="community_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="community_checkbox_uncheck_all" id="community_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="community_checkbox_uncheck_all" id="community_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
 </table>
+<script type="text/javascript">
+  (function(){
+    setEventClickToCheckOrUncheck("community_checkbox_check_all", "community", true);
+    setEventClickToCheckOrUncheck("community_checkbox_uncheck_all", "community", false);
+  })();
+</script>
 
 <script type='text/javascript'>
   var trs = $$('#community_fields_conf tr');
@@ -48,7 +68,3 @@
 </div>
 
 <% end %>
-
-
-
-
