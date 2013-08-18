@@ -28,7 +28,22 @@
 
   </tr>
   <% end %>
+
+  <tr>
+    <td><strong>Marcar/Desmarcar todos</strong> </td>
+    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
 </table>
+<script type="text/javascript">
+jQuery("img.enterprise_checkbox_select_all").click(function() {
+    // Exemple: enterprise_select_all_active --> active
+    var checkbox_to_select = jQuery(this).attr("id").split("_")[3];
+    var input_search = jQuery("#enterprise_fields_conf tbody tr td input[type='checkbox']");
+    selectAllChechboxes(input_search, checkbox_to_select);
+});
+</script>
 
 <script type='text/javascript'>
   var trs = $$('#enterprise_fields_conf tr');
@@ -48,7 +63,3 @@
 </div>
 
 <% end %>
-
-
-
-
