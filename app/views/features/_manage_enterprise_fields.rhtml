@@ -9,6 +9,7 @@
     <th><%= _('Required') %></th>
     <th><%= _('Display on registration?') %></th>
   </tr>
+
   <% @enterprise_fields.each do |field| %>
   <tr>
 
@@ -28,7 +29,26 @@
 
   </tr>
   <% end %>
+
+  <tr style="border-top:solid 2px #000">
+    <td><strong>Check all</strong> </td>
+    <td><img src="/images/check.png" class="enterprise_checkbox_check_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="enterprise_checkbox_check_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="enterprise_checkbox_check_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
+  <tr>
+    <td><strong>Uncheck all</strong> </td>
+    <td><img src="/images/uncheck.png" class="enterprise_checkbox_uncheck_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="enterprise_checkbox_uncheck_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="enterprise_checkbox_uncheck_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
 </table>
+<script type="text/javascript">
+  (function(){
+    setEventClickToCheckOrUncheck("enterprise_checkbox_check_all", "enterprise", true);
+    setEventClickToCheckOrUncheck("enterprise_checkbox_uncheck_all", "enterprise", false);
+  })();
+</script>
 
 <script type='text/javascript'>
   var trs = $$('#enterprise_fields_conf tr');
@@ -48,7 +68,3 @@
 </div>
 
 <% end %>
-
-
-
-

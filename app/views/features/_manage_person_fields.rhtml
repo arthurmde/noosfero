@@ -9,6 +9,7 @@
     <th><%= _('Required') %></th>
     <th><%= _('Display on signup?') %></th>
   </tr>
+
   <% @person_fields.each do |field| %>
   <tr>
     <td><label for="person_fields[<%= field %>][active]"><%= _(field.humanize) %></label></td>
@@ -26,9 +27,27 @@
     </td>
   </tr>
   <% end %>
-</table>
 
-<script type='text/javascript'>// <!--
+  <tr style="border-top:solid 2px #000">
+    <td><strong>Check all</strong> </td>
+    <td><img src="/images/check.png" class="person_checkbox_check_all" id="person_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="person_checkbox_check_all" id="person_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="person_checkbox_check_all" id="person_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
+  <tr>
+    <td><strong>Uncheck all</strong> </td>
+    <td><img src="/images/uncheck.png" class="person_checkbox_uncheck_all" id="person_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="person_checkbox_uncheck_all" id="person_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="person_checkbox_uncheck_all" id="person_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
+</table>
+<script type="text/javascript">
+  (function(){
+    setEventClickToCheckOrUncheck("person_checkbox_check_all", "person", true);
+    setEventClickToCheckOrUncheck("person_checkbox_uncheck_all", "person", false);
+  })();
+</script>
+<script type='text/javascript'>
   var trs = $$('#person_fields_conf tr');
   var tr, td2;
   for ( var i=0; tr=trs[i]; i++ ) {
@@ -36,7 +55,6 @@
       td2.getElementsByTagName('input')[0].onclick();
     }
   }
-  // -->
 </script>
 
 <div>
@@ -47,7 +65,3 @@
 </div>
 
 <% end %>
-
-
-
-
