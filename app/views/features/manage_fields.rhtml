@@ -1,3 +1,25 @@
+<script type="text/javascript">
+/* 
+ Search exemple: jQuery("#person_fields_conf tbody tr td input[type='checkbox']")
+*/
+function selectAllChechboxes(input_search, checkbox_clicked) {
+	var start_index;
+
+	switch(checkbox_clicked) {
+		case "active":   start_index = 0; break;
+    	case "required": start_index = 1; break;
+    	case "display":  start_index = 2; break;
+    	default: start_index = 0;
+	}
+
+	for(i=start_index; i < input_search.length; i += 3)
+    	if( input_search[i].checked )
+        	input_search[i].checked = false;
+        else           
+        	input_search[i].checked = true;
+}
+</script>
+
 <%= render :partial => 'manage_person_fields' %>
 
 <% if !environment.enabled?('disable_asset_enterprises') %>
