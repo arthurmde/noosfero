@@ -23,16 +23,17 @@ module ProfileHelper
     nationality = display_field(_('Nationality'), profile, :nationality)
     address = display_field(_('Address:'), profile, :address)
     zip = display_field(_('ZIP code:'), profile, :zip_code)
+    address_reference = display_field(_('Address Reference:'), profile, :address_reference)
     phone = display_field(_('Contact phone:'), profile, :contact_phone)
     cell = display_field(_('Cell Phone:'), profile, :cell_phone)
     comercial = display_field(_('Comercial Phone:'), profile, :comercial_phone) 
     email = display_field(_('e-Mail:'), profile, :email) { |email| link_to_email(email) }
     contact_info = display_field(_('Contact Information:'), profile, :contact_information)
 
-    if city.blank? && state.blank? && country.blank? && nationality.blank? && address.blank? && zip.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
+    if city.blank? && state.blank? && country.blank? && nationality.blank? && address.blank? && zip.blank? && address_reference.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
       ''
     else
-      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 })) + city + state + country + nationality + address + zip + phone + cell + comercial + email + contact_info 
+      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 })) + city + state + country + nationality + address + zip + address_reference + phone + cell + comercial + email + contact_info 
     end
   end
 
@@ -51,17 +52,19 @@ module ProfileHelper
       area_of_study.blank? && formation.blank?
       ''
     else
-      content_tag('tr', content_tag('th', _('Academic information'), { :colspan => 2 })) + schooling + formation + area_of_study + fields_of_interest + lattes
+      content_tag('tr', content_tag('th', _('Education'), { :colspan => 2 })) + schooling + formation + area_of_study + fields_of_interest + lattes
     end
   end
 
   def display_work_info(profile)
+  	professional_activity = display_field(_('Professional Activity'), profile, :professional_activity)
     organization = display_field(_('Organization:'), profile, :organization)
-    organization_site = display_field(_('Organization website:'), profile, :organization_website) { |url| link_to url, url, :target => 'blank'}
-    if organization.blank? && organization_site.blank?
+    organization_site = display_field(_('Organization Website:'), profile, :organization_website) { |url| link_to url, url, :target => 'blank'}
+    
+    if professional_activity.blank? && organization.blank? && organization_site.blank?
       ''
     else
-      content_tag('tr', content_tag('th', _('Work'), { :colspan => 2 })) + organization + organization_site
+      content_tag('tr', content_tag('th', _('Work'), { :colspan => 2 })) + professional_activity + organization + organization_site
     end
   end
 
