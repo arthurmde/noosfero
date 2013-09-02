@@ -42,6 +42,7 @@ module ProfileHelper
     schooling = display_field(_('Schooling:'), profile, :schooling)
     formation = display_field(_('Formation:'), profile, :formation)
     area_of_study = display_field(_('Area of study:'), profile, :custom_area_of_study)
+
     if area_of_study.blank?
       area_of_study = display_field(_('Area of study:'), profile, :area_of_study)    
     end
@@ -56,7 +57,7 @@ module ProfileHelper
 
   def display_work_info(profile)
     organization = display_field(_('Organization:'), profile, :organization)
-    organization_site = display_field(_('Organization website:'), profile, :organization_website) { |url| link_to(url, url) }
+    organization_site = display_field(_('Organization website:'), profile, :organization_website) { |url| link_to url, url, :target => 'blank'}
     if organization.blank? && organization_site.blank?
       ''
     else
