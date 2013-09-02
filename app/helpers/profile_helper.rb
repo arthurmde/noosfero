@@ -37,7 +37,7 @@ module ProfileHelper
     end
   end
 
-  def display_academic_info(profile)
+  def display_education_info(profile)
     lattes = display_field(_('Lattes:'), profile, :lattes) { |lattes| link_to 'Lattes', lattes, :target => 'blank' }
     fields_of_interest = display_field(_('Fields of Interest:'), profile, :fields_of_interest)
     schooling = display_field(_('Schooling:'), profile, :schooling)

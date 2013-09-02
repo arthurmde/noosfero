@@ -14,11 +14,11 @@
   </tr>
 
   <%= display_contact profile %>
-  
-  <%= display_academic_info profile %>
 
   <% cache_timeout(profile.relationships_cache_key, 4.hours) do %>
     <%= display_work_info profile %>
+
+    <%= display_education_info profile %>
 
     <% if !environment.enabled?('disable_asset_enterprises') && !profile.enterprises.empty? %>
       <tr>
