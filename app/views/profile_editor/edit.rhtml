@@ -74,17 +74,12 @@
 <% end %>
 
 <%# = generate_form :info, @info, {...} %>
-
+<%= javascript_include_tag 'form_extras.js' %>
 <script type="text/javascript">
   jQuery(document).ready(function(){
-  jQuery("#profile_data_description").parent().append("<span id='descripiton_length'>Remaining Characters: 400</span>");
-  jQuery("#descripiton_length").css({
-    "margin-left": "14px"
-  })
-  jQuery("#profile_data_description").attr("maxlength", 400);
-  jQuery("#profile_data_description").keypress(function(){
-    var text_length = jQuery(this).val().length;
-    jQuery("span#descripiton_length").html("Remaining Characters: "+(400-text_length));
-  })
-})
-</script>>
+    // Set max length to profile descripton
+    show_remaining_characters("profile_data_description" , 550);
+
+    show_remaining_characters("profile_data_management_information" , 550);
+  });
+</script>
