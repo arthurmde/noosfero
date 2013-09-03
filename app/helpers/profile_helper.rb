@@ -17,12 +17,7 @@ module ProfileHelper
   end
 
   def display_contact(profile)	
-    city = display_field(_('City:'), profile, :city)
-    state = display_field(_('State:'), profile, :state)
-    country = display_field(_('Country'), profile, :country) 
     nationality = display_field(_('Nationality'), profile, :nationality)
-    address = display_field(_('Address:'), profile, :address)
-    zip = display_field(_('ZIP code:'), profile, :zip_code)
     address_reference = display_field(_('Address Reference:'), profile, :address_reference)
     phone = display_field(_('Contact phone:'), profile, :contact_phone)
     cell = display_field(_('Cell Phone:'), profile, :cell_phone)
@@ -30,10 +25,12 @@ module ProfileHelper
     email = display_field(_('e-Mail:'), profile, :email) { |email| link_to_email(email) }
     contact_info = display_field(_('Contact Information:'), profile, :contact_information)
 
-    if city.blank? && state.blank? && country.blank? && nationality.blank? && address.blank? && zip.blank? && address_reference.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
-      ''
-    else
-      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 })) + city + state + country + nationality + address + zip + address_reference + phone + cell + comercial + email + contact_info 
+    
+if address_reference.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
+      
+    
+else
+      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 })) + address_reference + phone + cell + comercial + email + contact_info 
     end
   end
 
