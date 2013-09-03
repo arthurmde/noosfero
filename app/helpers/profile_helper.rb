@@ -25,12 +25,12 @@ module ProfileHelper
     email = display_field(_('e-Mail:'), profile, :email) { |email| link_to_email(email) }
     contact_info = display_field(_('Contact Information:'), profile, :contact_information)
 
-    
-if address_reference.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
-      
-    
-else
-      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 })) + address_reference + phone + cell + comercial + email + contact_info 
+
+
+    if address_reference.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
+      ''
+    else
+      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 }))  + address_reference + phone + cell + comercial + email + contact_info 
     end
   end
 
