@@ -9,6 +9,14 @@
     <th><%= _('Required') %></th>
     <th><%= _('Display on signup?') %></th>
   </tr>
+
+  <tr>
+    <td><strong>Marcar/Desmarcar todos</strong> </td>
+    <td><img src="/images/fancybox/fancy_close.png" class="person_checkbox_select_all" id="person_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/fancybox/fancy_close.png" class="person_checkbox_select_all" id="person_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/fancybox/fancy_close.png" class="person_checkbox_select_all" id="person_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
+
   <% @person_fields.each do |field| %>
   <tr>
     <td><label for="person_fields[<%= field %>][active]"><%= _(field.humanize) %></label></td>
@@ -26,13 +34,6 @@
     </td>
   </tr>
   <% end %>
-
-  <tr>
-    <td><strong>Marcar/Desmarcar todos</strong> </td>
-    <td><img src="/images/fancybox/fancy_close.png" class="person_checkbox_select_all" id="person_select_all_active" style="cursor:pointer" /></td>
-    <td><img src="/images/fancybox/fancy_close.png" class="person_checkbox_select_all" id="person_select_all_required" style="cursor:pointer" /></td>
-    <td><img src="/images/fancybox/fancy_close.png" class="person_checkbox_select_all" id="person_select_all_display_on_signup" style="cursor:pointer" /></td>
-  </tr>
 </table>
 <script type="text/javascript">
 jQuery("img.person_checkbox_select_all").click(function() {
