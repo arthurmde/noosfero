@@ -18,19 +18,18 @@ module ProfileHelper
 
   def display_contact(profile)	
     nationality = display_field(_('Nationality'), profile, :nationality)
-    address_reference = display_field(_('Address Reference:'), profile, :address_reference)
     phone = display_field(_('Contact phone:'), profile, :contact_phone)
     cell = display_field(_('Cell Phone:'), profile, :cell_phone)
     comercial = display_field(_('Comercial Phone:'), profile, :comercial_phone) 
     email = display_field(_('e-Mail:'), profile, :email) { |email| link_to_email(email) }
-    contact_info = display_field(_('Contact Information:'), profile, :contact_information)
+    #address_reference = display_field(_('Address Reference:'), profile, :address_reference)
 
 
 
-    if address_reference.blank? && phone.blank? && cell.blank? && comercial.blank? && email.blank? && contact_info.blank?
+    if phone.blank? && cell.blank? && comercial.blank? && email.blank? 
       ''
     else
-      content_tag('tr', content_tag('th', _('Contact'), { :colspan => 2 }))  + address_reference + phone + cell + comercial + email + contact_info 
+      content_tag('tr', content_tag('th', _('Contact Information'), { :colspan => 2 })) + phone + cell + comercial + email 
     end
   end
 
