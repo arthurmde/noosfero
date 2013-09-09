@@ -10,13 +10,6 @@
     <th><%= _('Display on registration?') %></th>
   </tr>
 
-  <tr>
-    <td><strong>Check / Uncheck all</strong> </td>
-    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
-    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
-    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
-  </tr>
-
   <% @enterprise_fields.each do |field| %>
   <tr>
 
@@ -37,20 +30,24 @@
   </tr>
   <% end %>
 
+  <tr style="border-top:solid 2px #000">
+    <td><strong>Check all</strong> </td>
+    <td><img src="/images/check.png" class="enterprise_checkbox_check_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="enterprise_checkbox_check_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/check.png" class="enterprise_checkbox_check_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
+  </tr>
   <tr>
-    <td><strong>Check / Uncheck all</strong> </td>
-    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
-    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
-    <td><img src="/images/fancybox/fancy_close.png" class="enterprise_checkbox_select_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
+    <td><strong>Uncheck all</strong> </td>
+    <td><img src="/images/uncheck.png" class="enterprise_checkbox_uncheck_all" id="enterprise_select_all_active" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="enterprise_checkbox_uncheck_all" id="enterprise_select_all_required" style="cursor:pointer" /></td>
+    <td><img src="/images/uncheck.png" class="enterprise_checkbox_uncheck_all" id="enterprise_select_all_display_on_signup" style="cursor:pointer" /></td>
   </tr>
 </table>
 <script type="text/javascript">
-jQuery("img.enterprise_checkbox_select_all").click(function() {
-    // Exemple: enterprise_select_all_active --> active
-    var checkbox_to_select = jQuery(this).attr("id").split("_")[3];
-    var input_search = jQuery("#enterprise_fields_conf tbody tr td input[type='checkbox']");
-    selectAllChechboxes(input_search, checkbox_to_select);
-});
+  (function(){
+    setEventClickToCheckOrUncheck("enterprise_checkbox_check_all", "enterprise", true);
+    setEventClickToCheckOrUncheck("enterprise_checkbox_uncheck_all", "enterprise", false);
+  })();
 </script>
 
 <script type='text/javascript'>
