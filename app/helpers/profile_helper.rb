@@ -37,9 +37,12 @@ module ProfileHelper
     lattes = display_field(_('Lattes:'), profile, :lattes) { |lattes| link_to 'Lattes', lattes, :target => 'blank' }
     fields_of_interest = display_field(_('Fields of Interest:'), profile, :fields_of_interest)
     schooling = display_field(_('Schooling:'), profile, :schooling)
-    formation = display_field(_('Formation:'), profile, :formation)
+    formation = display_field(_('Formation:'), profile, :custom_formation)
     area_of_study = display_field(_('Area of study:'), profile, :custom_area_of_study)
 
+    if formation.blank?
+      formation = display_field(_('Formation:'), profile, :formation)
+    end
     if area_of_study.blank?
       area_of_study = display_field(_('Area of study:'), profile, :area_of_study)    
     end
