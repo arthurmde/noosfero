@@ -155,8 +155,6 @@ class Person < Profile
   image
   district
   address_reference
-  lattes
-  fields_of_interest
   ]
 
   validates_multiparameter_assignments
