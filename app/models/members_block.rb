@@ -1,5 +1,7 @@
 class MembersBlock < ProfileListBlock
 
+  settings_items :display_join_button, :type => :boolean, :default => false
+
   def self.description
     _('Members')
   end
