@@ -1,5 +1,7 @@
 class VideoBlock < Block
 
+  settings_items :url, :type => :string, :default => ""
+
   def self.description
     _('Add Video')
   end
@@ -10,7 +12,7 @@ class VideoBlock < Block
 
   def content(args={})
     lambda do
-      render :file => 'blocks/login_block'
+      render :file => 'blocks/video_block'
     end
   end
 
