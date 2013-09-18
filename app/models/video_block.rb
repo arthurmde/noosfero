@@ -1,6 +1,23 @@
 class VideoBlock < Block
 
   settings_items :url, :type => :string, :default => ""
+  
+  def is_youtube? 
+    false
+
+    if url.include?("youtube.com")
+      true
+    end
+  end
+
+  def is_vimeo? 
+    false
+
+    if url.include?("vimeo.com")
+      true
+    end
+  end
+
 
   def self.description
     _('Add Video')
@@ -18,6 +35,7 @@ class VideoBlock < Block
     end
   end
 
+  
   def cacheable?
     false
   end
