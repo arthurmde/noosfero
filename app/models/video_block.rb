@@ -11,13 +11,15 @@ class VideoBlock < Block
   end
 
   def content(args={})
+    block = self
+
     lambda do
-      render :file => 'blocks/video_block'
+      render :file => 'blocks/video_block', :locals => { :block => block }
     end
   end
 
   def cacheable?
     false
   end
-
+  
 end
