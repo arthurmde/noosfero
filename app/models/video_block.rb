@@ -12,7 +12,7 @@ class VideoBlock < Block
 
   def content(args={})
     lambda do
-      rander :partial => 'blocks/video_block'
+      render :file => 'blocks/video_block'
     end
   end
 
