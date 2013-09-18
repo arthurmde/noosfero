@@ -18,6 +18,10 @@ class VideoBlock < Block
     end
   end
 
+  def format_embedded_video_url
+    self.url.gsub("watch?v=", "v/")
+  end
+
 
   def self.description
     _('Add Video')
