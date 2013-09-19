@@ -18,8 +18,8 @@ class VideoBlock < Block
     end
   end
 
-  def format_embedded_video_url
-    self.url.gsub("watch?v=", "v/")
+  def format_embed_video_url_for_youtube
+    self.url.gsub("watch?v=", "embed/")
   end
 
 
