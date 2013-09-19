@@ -1,6 +1,8 @@
 class VideoBlock < Block
 
   settings_items :url, :type => :string, :default => ""
+  settings_items :width, :type => :integer, :default => 400
+  settings_items :height, :type => :integer, :default => 315
   
   def is_youtube? 
     false
@@ -21,7 +23,7 @@ class VideoBlock < Block
   def is_file? 
     false
 
-    extensions = [".mp4", ".ogg", ".ogv", ".mp3", ".wmv"]
+    extensions = [".mp4", ".ogg", ".ogv", ".wmv"]
     if extensions.include? url[-4, 4]
       true
     end
