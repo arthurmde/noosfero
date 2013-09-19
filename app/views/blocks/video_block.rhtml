@@ -3,6 +3,8 @@
   <%= render :partial => 'blocks/youtube_video_block', :locals => { :url => block.format_embed_video_url_for_youtube }%>
   <% elsif block.is_vimeo? %>
   <%= render :partial => 'blocks/youtube_video_block', :locals => { :url => block.format_embed_video_url_for_vimeo }%>
+  <% elsif block.is_file? %>
+  <%= render :partial => 'blocks/youtube_video_block', :locals => { :url => block.url }%>
   <% else %>
   <%= "<span class='alert-block'> Cadastre uma nova URL (Vimeo, Youtube)</span>" %>
   <% end %>

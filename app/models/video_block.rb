@@ -18,6 +18,15 @@ class VideoBlock < Block
     end
   end
 
+  def is_file? 
+    false
+
+    extensions = [".mp4", ".ogg", ".ogv", ".mp3", ".wmv"]
+    if extensions.include? url[-4, 4]
+      true
+    end
+  end
+
   def format_embed_video_url_for_youtube
     self.url.gsub("watch?v=", "embed/")
   end
