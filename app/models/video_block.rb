@@ -22,6 +22,9 @@ class VideoBlock < Block
     self.url.gsub("watch?v=", "embed/")
   end
 
+  def format_embed_video_url_for_vimeo
+    self.url.gsub("vimeo.com/", "player.vimeo.com/video/")
+  end
 
   def self.description
     _('Add Video')
