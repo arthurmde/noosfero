@@ -1,8 +1,8 @@
 class VideoBlock < Block
 
   settings_items :url, :type => :string, :default => ""
-  settings_items :width, :type => :string, :default => "100%"
-  settings_items :height, :type => :string, :default => "315px"
+  settings_items :width, :type => :integer, :default => 400
+  settings_items :height, :type => :integer, :default => 315
   
   def is_youtube? 
     false
