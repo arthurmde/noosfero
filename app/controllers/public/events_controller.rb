@@ -1,7 +1,6 @@
 class EventsController < PublicController
 
   needs_profile
-  no_design_blocks
 
   def events
     @selected_day = nil
