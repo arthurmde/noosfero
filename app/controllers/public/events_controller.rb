@@ -4,7 +4,9 @@ class EventsController < PublicController
 
   def events
     @selected_day = nil
+    @selected_month = nil
     @events_of_the_day = []
+    @events_of_the_month = []
     date = build_date(params[:year], params[:month], params[:day])
 
     if params[:day] || !params[:year] && !params[:month]
@@ -23,6 +25,12 @@ class EventsController < PublicController
     @selected_day = build_date(params[:year], params[:month], params[:day])
     @events_of_the_day = profile.events.by_day(@selected_day)
     render :partial => 'events_by_day'
+  end
+
+  def events_by_month
+    @selected_month = build_date(params[:year], params[:month], params[:day])
+    @events_of_the_month = profile.events.by_day(@selected_month)
+    render :partial => 'events_by_month'
   end
 
   protected
