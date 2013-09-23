@@ -68,7 +68,8 @@ class Box < ActiveRecord::Base
       RecentDocumentsBlock,
       SellersSearchBlock,
       SlideshowBlock,
-      TagsBlock
+      TagsBlock,
+      SocialBlock
     ]
   end
 
