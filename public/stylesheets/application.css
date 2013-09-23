@@ -1654,6 +1654,7 @@ a.button.disabled, input.disabled {
 #box-organizer .block {
   cursor: move;
   position: relative;
+  min-height: 20px;
 }
 
 #box-organizer .block .button-bar {
@@ -1700,6 +1701,7 @@ a.button.disabled, input.disabled {
     box-shadow: none;
     outline: none;
 }
+#box-organizer .article-block,
 #box-organizer .recent-documents-block {
   overflow: visible !important;
 }
