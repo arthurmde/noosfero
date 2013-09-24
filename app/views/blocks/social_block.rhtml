@@ -1,3 +1,17 @@
-<div class="social-block-data" style = 'display : none;'>
+<<h3 class="block-title">
+	<span><%= block.title %></span>
+</h3>
 
+<div class="social-block-data">
+	<% if block.is_facebook? %>
+	<%= "Facebook" %>
+	<% elsif block.is_twitter? %>
+	<%= "Twitter" %>
+	<% elsif block.is_linkedin? %>
+	<%= "Linkedin" %>
+	<% elsif block.is_gplus? %>
+	<%= "Google Plus" %>
+	<% else %>
+	<%= "URL Errada" %>
+	<% end %>
 </div>

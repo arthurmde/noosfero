@@ -1,16 +1,6 @@
+<label for="url" class="formlabel">Type your Social Network URL</label>
 
 <div class="formfield type-text" >
-
-	<%= check_box_tag(:option_facebook, checked_value = "1", unchecked_value = "0") %>
-	<%= label_tag(:option_facebook, "Facebook") %>
-	<%= if check_box_tag.checked_value == 1 %>
-		<%= label_tag(:option_facebook, "Facebook2") %>
-	<%end%>
-	<%= text_field_tag 'url', '', :class => 'facebook-url', :maxlength => 255 %>
-	<%= check_box_tag(:option_twitter) %>
-	<%= label_tag(:option_twitter, "Twitter") %>
-	<%= text_field_tag 'url', '', :class => 'twitter-url', :maxlength => 255 %>
-
-
+	<%= text_field_tag 'block[url]', @block.url, :class => 'social-url', :maxlength => 255 %>
 </div>
 
