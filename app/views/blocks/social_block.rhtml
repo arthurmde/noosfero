@@ -4,13 +4,13 @@
 
 <div class="social-block-data">
 	<% if block.is_facebook? %>
-	<%= "Facebook" %>
+	<%= render :partial => 'blocks/facebook_social_block' %>
 	<% elsif block.is_twitter? %>
-	<%= "Twitter" %>
+	<%= render :partial => 'blocks/twitter_social_block' %>
 	<% elsif block.is_linkedin? %>
-	<%= "Linkedin" %>
+	<%= render :partial => 'blocks/linkedin_social_block' %>
 	<% elsif block.is_gplus? %>
-	<%= "Google Plus" %>
+	<%= render :partial => 'blocks/gplus_social_block' %>
 	<% else %>
 	<%= "URL Errada" %>
 	<% end %>
