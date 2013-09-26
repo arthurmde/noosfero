@@ -1706,6 +1706,10 @@ a.button.disabled, input.disabled {
   overflow: visible !important;
 }
 
+#box-organizer .blog-post {
+  margin: auto;
+}
+
 /****************************************
  * Block options editor floating window *
  ****************************************/
