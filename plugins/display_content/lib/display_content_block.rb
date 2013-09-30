@@ -3,6 +3,8 @@ class DisplayContentBlock < Block
   settings_items :nodes, :type => Array, :default => []
   settings_items :parent_nodes, :type => Array, :default => []
   settings_items :chosen_attributes, :type => Array, :default => ['title']
+  settings_items :item_count, :type => Integer, :default => 1
+  settings_items :blog_picture, :type => :string, :default => "0"
 
   def self.description
     _('Display your contents')
@@ -38,16 +40,17 @@ class DisplayContentBlock < Block
 
   include ActionController::UrlWriter
   def content(args={})
-    docs = owner.articles.find(:all, :conditions => {:id => self.nodes})
+    docs = owner.articles.find(:all, :conditions => {:id => self.nodes}, :limit => self.item_count)
+
     block_title(title) +
+    (self.parent_nodes.first.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename()))+
     content_tag('ul', docs.map {|item|  
       content_tag('li', 
         (display_attribute?('title') ? content_tag('div', link_to(h(item.title), item.url), :class => 'title') : '') +
         (display_attribute?('abstract') ? content_tag('div', item.abstract ,:class => 'lead') : '') +
-        (display_attribute?('body') ? content_tag('div', item.body ,:class => 'body') : '')
+        (display_attribute?('body') ? content_tag('div', item.body ,:class => 'body') : '') 
       )
-    }.join("\n"))
-
+    }.join("\n")) 
   end
 
   def url_params

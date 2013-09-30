@@ -9,6 +9,7 @@
 
 <h3> <%= _('Choose which content should be displayed:') %> </h3>
 <div id="display_content">
+
 </div>
 
 <script type="text/javascript" >
@@ -32,4 +33,13 @@ jQuery_1_8_3("#display_content").jstree({
 });
 
 </script>
+
+<h3> <%= _('Choose how many items will be displayed:') %> </h3>
+<div id="display_count">
+	<%= text_field_tag 'block[item_count]', @block.item_count, :size => 3, :maxlength => 5 %>
+</div>
+
+<%= _('Display Blog Image:') %> 
+<div>
+  <%= check_box_tag 'block[blog_picture]', @block.blog_picture, :checkedvalue => "1", :uncheckedvalue => "0"  %>
 </div>
