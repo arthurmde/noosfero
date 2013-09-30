@@ -1,3 +1,36 @@
+<script type="text/javascript">
+/* 
+ Search exemple: jQuery("#person_fields_conf tbody tr td input[type='checkbox']")
+*/
+function selectAllChechboxes(input_search, checkbox_clicked, check_uncheck) {
+	var start_index;
+
+	switch(checkbox_clicked) {
+		case "active":   start_index = 0; break;
+    	case "required": start_index = 1; break;
+    	case "display":  start_index = 2; break;
+    	default: start_index = 0;
+	}
+    
+    //input_search[i].checked = false;
+	for(i=start_index; i < input_search.length; i += 3)
+    	input_search[i].checked = check_uncheck;
+}
+
+/*
+ which_field : person or community or enterprise
+*/
+function setEventClickToCheckOrUncheck(image_class, which_field, check_or_uncheck) {
+    jQuery("img."+image_class).click(function() {
+        // Exemple: person_select_all_active --> active
+        var checkbox_to_select = jQuery(this).attr("id").split("_")[3];
+        var input_search = jQuery("#"+which_field+"_fields_conf tbody tr td input[type='checkbox']");
+        
+        selectAllChechboxes(input_search, checkbox_to_select, check_or_uncheck);
+    });
+}
+</script>
+
 <%= render :partial => 'manage_person_fields' %>
 
 <% if !environment.enabled?('disable_asset_enterprises') %>
