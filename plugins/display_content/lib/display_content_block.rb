@@ -3,6 +3,7 @@ class DisplayContentBlock < Block
   settings_items :nodes, :type => Array, :default => []
   settings_items :parent_nodes, :type => Array, :default => []
   settings_items :chosen_attributes, :type => Array, :default => ['title']
+  settings_items :item_count, :type => Integer, :default => 1
 
   def self.description
     _('Display your contents')
