@@ -14,7 +14,7 @@ module EventsHelper
 
   def list_events_month(date, events)
     return content_tag('em', _("Select a month"), :class => 'select-a-day') unless date
-    title = _('Events for %s') % date
+    title = _('Events for %s') % show_date_month(date)
     content_tag('h2', title) +
     content_tag('div',
       (events.any? ?
