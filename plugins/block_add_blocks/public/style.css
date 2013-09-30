@@ -1,0 +1,7 @@
+#block_add_blocks_plugin ul {
+  list-style: none;
+}
+
+#block_add_blocks_plugin .display_attributes li{
+  display: inline;
+}
