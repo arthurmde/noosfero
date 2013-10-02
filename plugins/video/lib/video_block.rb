@@ -13,7 +13,7 @@ class VideoBlock < Block
 
   def is_vimeo?
     valid_match = url.match(/^(http[s]?:\/\/)?(www.)?(vimeo.com|player.vimeo.com\/video)\/[[:digit:]]*/) ? true : false
-    empty_id = url.match(/.*com\/$/) ? true : false
+    empty_id = url.match(/.*com\/$|.*video\/$/) ? true : false
 
     valid_match and !empty_id ? true : false
   end
