@@ -28,10 +28,10 @@ class DisplayContentBlock < Block
       parent_articles = parent_articles + get_parent(article) unless parent_articles.include?(article.parent_id)
     end
     self.parent_nodes = parent_articles
-    self.nodes = articles.map{|a| a.id if a.is_a?(TextArticle) }.compact
+    self.nodes = articles.map{|a| a.id if a.is_a?(Event) || a.is_a?(TextArticle) }.compact
   end
 
-  VALID_CONTENT = ['RawHTMLArticle', 'TextArticle', 'TextileArticle', 'TinyMceArticle', 'Folder', 'Blog', 'Forum']
+  VALID_CONTENT = ['Event', 'RawHTMLArticle', 'TextArticle', 'TextileArticle', 'TinyMceArticle', 'Folder', 'Blog', 'Forum']
 
   def articles_of_parent(parent = nil)
     return [] if self.holder.nil?
