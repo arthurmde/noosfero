@@ -4,7 +4,7 @@ class DisplayContentBlock < Block
   settings_items :parent_nodes, :type => Array, :default => []
   settings_items :chosen_attributes, :type => Array, :default => ['title']
   settings_items :item_count, :type => Integer, :default => 1
-  settings_items :blog_picture, :type => :string, :default => "0"
+  settings_items :blog_picture, :type => :boolean, :default => false
 
   def self.description
     _('Display your contents')
@@ -44,7 +44,7 @@ class DisplayContentBlock < Block
     docs = docs.reverse
     docs = docs[0, self.item_count]
     block_title(title) +
-    (self.parent_nodes.first.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename()))+
+    (self.blog_picture ? (self.parent_nodes.first.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename())) : '') +
     content_tag('ul', docs.map {|item|  
       content_tag('li', 
         (display_attribute?('title') ? content_tag('div', link_to(h(item.title), item.url), :class => 'title') : '') +
