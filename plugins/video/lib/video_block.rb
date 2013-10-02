@@ -6,14 +6,14 @@ class VideoBlock < Block
 
   def is_youtube?
     valid_match = url.match(/.*(youtube.com.*v=[[:alnum:]]*|youtu.be\/[[:alnum:]]*).*/) ? true : false
-    empty_id = url.match(/youtube.com.*v=$/) ? true : false
+    empty_id = url.match(/(.*v=$)|(.*be\/$)/) ? true : false
     
-    valid_match and !empty_id ? true : false
+    (valid_match and !empty_id) ? true : false
   end
 
   def is_vimeo?
     valid_match = url.match(/^(http[s]?:\/\/)?(www.)?(vimeo.com|player.vimeo.com\/video)\/[[:digit:]]*/) ? true : false
-    empty_id = url.match(/^(http[s]?:\/\/)?(www.)?(vimeo.com|player.vimeo.com\/video)\/\t*/) ? true : false
+    empty_id = url.match(/.*com\/$/) ? true : false
 
     valid_match and !empty_id ? true : false
   end
