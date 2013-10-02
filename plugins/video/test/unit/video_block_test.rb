@@ -162,4 +162,46 @@ class VideoBlockTest < ActiveSupport::TestCase
     assert !block.is_video_file?
   end
 
+  # Tests for VideoBlock.extract_youtube_id
+
+  should "extract_youtube_id return the ID from any valid youtube url" do
+    block = VideoBlock.new
+
+    block.url = "youtube.com/?v=1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "www.youtube.com/?v=1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "http://youtube.com/?v=1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "http://www.youtube.com/?v=1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "https://youtube.com/?v=1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "https://www.youtube.com/?v=1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "youtu.be/1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "www.youtu.be/1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "http://youtu.be/1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "https://youtu.be/1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+
+    block.url = "http://www.youtu.be/1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+    
+    block.url = "https://www.youtu.be/1a2b3c"
+    assert_equal("1a2b3c", block.send(:extract_youtube_id))
+  end
+
 end
