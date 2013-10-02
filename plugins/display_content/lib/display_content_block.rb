@@ -40,8 +40,9 @@ class DisplayContentBlock < Block
 
   include ActionController::UrlWriter
   def content(args={})
-    docs = owner.articles.find(:all, :conditions => {:id => self.nodes}, :limit => self.item_count)
-
+    docs = owner.articles.find(:all, :conditions => {:id => self.nodes})
+    docs = docs.reverse
+    docs = docs[0, self.item_count]
     block_title(title) +
     (self.parent_nodes.first.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename()))+
     content_tag('ul', docs.map {|item|  
