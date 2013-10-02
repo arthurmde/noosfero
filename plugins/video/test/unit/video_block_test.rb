@@ -33,16 +33,22 @@ class VideoBlockTest < ActiveSupport::TestCase
     assert block.is_youtube?
   end
 
-  should "is_youtube return false when the url not contains youtube video ID" do
+  should "is_youtube return false when the url not contains youtube.com video ID" do
     block = VideoBlock.new
     block.url = "youtube.com/"
-    assert block.is_youtube?
+    assert_equal(false, block.is_youtube?)
   end
 
-  should "is_youtube return false when the url contains empty youtube video ID" do
+  should "is_youtube return false when the url contains an empty youtube.com video ID" do
     block = VideoBlock.new
     block.url = "youtube.com/?v="
-    assert block.is_youtube?
+    assert_equal(false, block.is_youtube?)
+  end
+
+  should "is_youtube return false when the url contains empty youtu.be video ID" do
+    block = VideoBlock.new
+    block.url = "youtu.be/"
+    assert_equal(false, block.is_youtube?)
   end
 
   should "is_youtube return false when the url contains an invalid youtube link" do
@@ -92,7 +98,7 @@ class VideoBlockTest < ActiveSupport::TestCase
   should "is_vimeo return false when the url contains empty vimeo video ID" do
     block = VideoBlock.new
     block.url = "vimeo.com/"
-    assert block.is_vimeo?
+    assert_equal(false, block.is_vimeo?)
   end
 
   should "is_vimeo return false when the url contains an invalid vimeo link" do
