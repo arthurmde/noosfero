@@ -13,7 +13,7 @@ module EventsHelper
 
   def display_event_in_listing(article)
     content_tag( 'tr', content_tag('td', link_to(article.name, article.url, :class => icon_for_article(article))), :class => 'agenda-item') + 
-    content_tag( 'tr', content_tag('td', 'Place: ' + article.address) , :class => 'agenda-local') +
+    content_tag( 'tr', content_tag('td', article.address.include?('#') ? 'Indefined place' : 'Place: ' + article.address) , :class => 'agenda-local') +
     content_tag( 'tr', content_tag('td', 'Date: ' + show_date(article.start_date)), :class => 'agenda-local')
   end
 
