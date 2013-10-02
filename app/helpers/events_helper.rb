@@ -2,24 +2,12 @@ module EventsHelper
 
   def list_events(date, events)
     return content_tag('em', _("Select a day on the left to display it's events here"), :class => 'select-a-day') unless date
-    title = _('Events for %s') % show_date(date)
+    title = _('Events for %s') % show_date_month(date)
     content_tag('h2', title) +
     content_tag('div',
       (events.any? ?
         content_tag('table', events.select { |item| item.display_to?(user) }.map {|item| display_event_in_listing(item)}.join('')) :
         content_tag('em', _('No events for this date'), :class => 'no-events')
-      ), :id => 'agenda-items'
-    )
-  end
-
-  def list_events_month(date, events)
-    return content_tag('em', _("Select a month"), :class => 'select-a-day') unless date
-    title = _('Events for %s') % show_date_month(date)
-    content_tag('h2', title) +
-    content_tag('div',
-      (events.any? ?
-        content_tag('table', events.select { |item| item.display_to?(user) }.map {|item| display_event_in_listing(item)}.join('') ) :
-        content_tag('em', _('No events for this month.'), :class => 'no-events')
       ), :id => 'agenda-items'
     )
   end
