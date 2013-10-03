@@ -286,5 +286,33 @@ class VideoBlockTest < ActiveSupport::TestCase
     block.url = "https://www.youtu.be/1a2b3c"
     assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
   end
-  
+
+  # Tests for format_embed_video_url_for_vimeo
+  should "format_embed_video_url_for_vimeo return an ambed url from any valid vimeo url" do
+    block = VideoBlock.new
+
+    block.url = "vimeo.com/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "www.vimeo.com/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "http://vimeo.com/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "http://www.vimeo.com/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "https://vimeo.com/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "https://www.vimeo.com/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "http://player.vimeo.com/video/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+
+    block.url = "https://player.vimeo.com/video/12345"
+    assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
+  end
 end

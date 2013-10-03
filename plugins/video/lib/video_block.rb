@@ -23,12 +23,10 @@ class VideoBlock < Block
     url.match(/.*(mp4|ogg|ogv|webm)$/) ? true : false
   end
 
-  #FIXME Make this test
   def format_embed_video_url_for_youtube
     "//www.youtube-nocookie.com/embed/#{extract_youtube_id}?rel=0&wmode=transparent"
   end
 
-  #FIXME Make this test
   def format_embed_video_url_for_vimeo
     "//player.vimeo.com/video/#{extract_vimeo_id}"
   end
