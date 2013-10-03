@@ -5,17 +5,18 @@ class VideoBlock < Block
   settings_items :height, :type => :integer, :default => 315
 
   def is_youtube?
-    valid_match = url.match(/.*(youtube.com.*v=[[:alnum:]]*|youtu.be\/[[:alnum:]]*).*/) ? true : false
+    valid_url = url.match(/.*(youtube.com.*v=[[:alnum:]]*|youtu.be\/[[:alnum:]]*).*/) ? true : false
     empty_id = url.match(/(.*v=$)|(.*be\/$)/) ? true : false
-    
-    (valid_match and !empty_id) ? true : false
+
+    (valid_url and !empty_id) ? true : false
   end
 
   def is_vimeo?
-    valid_match = url.match(/^(http[s]?:\/\/)?(www.)?(vimeo.com|player.vimeo.com\/video)\/[[:digit:]]*/) ? true : false
-    empty_id = url.match(/.*com\/$|.*video\/$/) ? true : false
+    valid_url = url.match(/^(http[s]?:\/\/)?(www.)?(vimeo.com|player.vimeo.com\/video)\/[[:digit:]]*/) ? true : false
+    #empty_id = url.match(/(.*com\/$)|(.*video\/$)|(.*com\/\D*$)/) ? true : false
+    valid_id = url.match(/(.*com\/[[:digit:]].*)|(.*video\/[[:digit:]].*)/)
 
-    valid_match and !empty_id ? true : false
+    (valid_url and valid_id) ? true : false
   end
 
   def is_video_file? 
