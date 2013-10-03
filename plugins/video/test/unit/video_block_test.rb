@@ -246,4 +246,45 @@ class VideoBlockTest < ActiveSupport::TestCase
     assert_equal("12345", block.send(:extract_vimeo_id))
   end
 
+  # Tests for format_embed_video_url_for_youtube
+  should "format_embed_video_url_for_youtube return an ambed url from any valid youtube url" do
+    block = VideoBlock.new
+
+    block.url = "youtube.com/?v=1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "www.youtube.com/?v=1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "http://youtube.com/?v=1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "http://www.youtube.com/?v=1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "https://youtube.com/?v=1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "https://www.youtube.com/?v=1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "youtu.be/1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "www.youtu.be/1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "http://youtu.be/1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "https://youtu.be/1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+
+    block.url = "http://www.youtu.be/1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+    
+    block.url = "https://www.youtu.be/1a2b3c"
+    assert_equal("//www.youtube-nocookie.com/embed/1a2b3c?rel=0&wmode=transparent", block.format_embed_video_url_for_youtube)
+  end
+  
 end
