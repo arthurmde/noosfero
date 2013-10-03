@@ -36,7 +36,6 @@ class VideoBlock < Block
     _('Add Video')
   end
 
-  #FIXME Make this test
   def help
     _('This block presents a video block.')
   end
