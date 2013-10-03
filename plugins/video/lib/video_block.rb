@@ -59,7 +59,6 @@ class VideoBlock < Block
 
   private
 
-  #FIXME Make this test
   def extract_youtube_id
     return nil unless is_youtube?
     youtube_match = url.match('v=([[:alnum:]]*)')
