@@ -526,10 +526,12 @@ div#notice {
 }
 
 /************************* Recent Contents ***************************/
-
-#content .feed-reader-block,
 #content .recent-documents-block {
   overflow: hidden;
+}
+
+#content .feed-reader-block {
+  overflow: visible;
 }
 
 .feed-reader-block li,
