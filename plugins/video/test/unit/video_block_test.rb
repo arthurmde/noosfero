@@ -204,4 +204,34 @@ class VideoBlockTest < ActiveSupport::TestCase
     assert_equal("1a2b3c", block.send(:extract_youtube_id))
   end
 
+  # Tests for VideoBlock.extract_vimeo_id
+
+  should "extract_vimeo_id return the ID from any valid vimeo url" do
+    block = VideoBlock.new
+
+    block.url = "vimeo.com/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "www.vimeo.com/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "http://vimeo.com/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "http://www.vimeo.com/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "https://vimeo.com/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "https://www.vimeo.com/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "http://player.vimeo.com/video/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+
+    block.url = "https://player.vimeo.com/video/12345"
+    assert_equal("12345", block.send(:extract_vimeo_id))
+  end
+
 end
