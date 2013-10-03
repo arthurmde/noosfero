@@ -1,5 +1,5 @@
 class RssFeed < Article
-
+  
   def self.type_name
     _('RssFeed')
   end

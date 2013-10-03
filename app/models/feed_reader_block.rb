@@ -1,5 +1,5 @@
 class FeedReaderBlock < Block
-
+    
   def initialize(attributes = nil)
     data = attributes || {}
     super({ :enabled => !data[:address].blank? }.merge(data))
@@ -23,6 +23,8 @@ class FeedReaderBlock < Block
 
   settings_items :update_errors, :type => :integer, :default => 0
   settings_items :error_message, :type => :string
+  
+  acts_as_having_image
 
   named_scope :expired, lambda {
     { :conditions => [ '(fetched_at is NULL) OR (fetched_at < ?)', Time.now - FeedUpdater.update_interval] }
@@ -79,7 +81,9 @@ class FeedReaderBlock < Block
   end
 
   def content(args={})
-    block_title(title) + formatted_feed_content
+    block_title(title) +
+    #self.image(:thumb).public_filename +
+    formatted_feed_content
   end
 
   def editable?

@@ -1,4 +1,11 @@
 <div id='edit-feed-reader-block'>
+  
+  <% fields_for :image_builder, @block.image do |i| %>
+    <%= file_field_or_thumbnail(_('Image:'), @block.image, i)%>
+    <%= _("Max size: %s (.jpg, .gif, .png)")% Image.max_size.to_humanreadable %>
+  <% end %>
+  
   <%= labelled_form_field _('Address'), text_field(:block, :address, :size => 40) %>
   <%= labelled_form_field _('Limit of posts to display'), select(:block, :limit, [5, 10, 20, 50]) %>
+  
 </div>
