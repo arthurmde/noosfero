@@ -315,4 +315,10 @@ class VideoBlockTest < ActiveSupport::TestCase
     block.url = "https://player.vimeo.com/video/12345"
     assert_equal("//player.vimeo.com/video/12345", block.format_embed_video_url_for_vimeo)
   end
+
+  # Test fo help
+  should "help return the VideoBlock help text" do
+    block = VideoBlock.new
+    assert_equal(_('This block presents a video block.'), block.help)
+  end
 end
