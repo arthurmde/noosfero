@@ -47,9 +47,9 @@ class DisplayContentBlock < Block
     (self.blog_picture ? (self.parent_nodes.first.nil? ? '' : (Blog.find(self.parent_nodes.first).image.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename()))) : '') +
      content_tag('ul', docs.map {|item|  
       content_tag('li', 
-        (display_attribute?('title') ? content_tag('div', link_to(h(item.title), item.url), :class => 'title') : '') +
-        (display_attribute?('abstract') ? content_tag('div', item.abstract ,:class => 'lead') : '') +
-        (display_attribute?('body') ? content_tag('div', item.body ,:class => 'body') : '') 
+        (display_attribute?('title') ? link_to(h(item.title), item.url) : '') +
+        (display_attribute?('abstract') ? item.abstract : '') +
+        (display_attribute?('body') ? item.body : '') 
       )
     }.join("\n")) 
   end
