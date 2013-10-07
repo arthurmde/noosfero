@@ -39,7 +39,10 @@ jQuery_1_8_3("#display_content").jstree({
 	<%= text_field_tag 'block[item_count]', @block.item_count, :size => 3, :maxlength => 5 %>
 </div>
 
-<%= _('Display Blog Image:') %> 
+<% unless @block.parent_nodes.blank? %>
+<h3> <%= _('Display Blog Image:') %>  </h3> 
 <div>
-  <%= check_box_tag 'block[blog_picture]', @block.blog_picture, :checkedvalue => "1", :uncheckedvalue => "0"  %>
+<%= hidden_field_tag 'block[blog_picture]', false %> 
+<%= check_box_tag 'block[blog_picture]', true, @block.blog_picture %>
 </div>
+<% end %>

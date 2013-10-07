@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 class DisplayContentBlockTest < ActiveSupport::TestCase
 
-  INVALID_KIND_OF_ARTICLE = [EnterpriseHomepage, Event, RssFeed, UploadedFile, Gallery]
+  INVALID_KIND_OF_ARTICLE = [EnterpriseHomepage, RssFeed, UploadedFile, Gallery]
   VALID_KIND_OF_ARTICLE = [RawHTMLArticle, TextArticle, TextileArticle, TinyMceArticle, Folder, Blog, Forum]
 
   should 'describe itself' do
@@ -192,7 +192,7 @@ class DisplayContentBlockTest < ActiveSupport::TestCase
     assert_equal [], block.nodes - [a1.id]
   end
 
-  should 'Event not be saved as node' do
+  should 'Event be saved as node' do
     profile = create_user('testuser').person
     Article.delete_all
     a1 = fast_create(TextArticle, :name => 'test article 1', :profile_id => profile.id)
@@ -203,8 +203,8 @@ class DisplayContentBlockTest < ActiveSupport::TestCase
     block = DisplayContentBlock.new
     block.stubs(:holder).returns(profile)
     block.checked_nodes= checked_articles
-    assert_equal [], [a1.id, a2.id] - block.nodes
-    assert_equal [], block.nodes - [a1.id, a2.id]
+    assert_equal [], [a1.id, a2.id,a3.id] - block.nodes
+    assert_equal [], block.nodes - [a1.id, a2.id,a3.id]
   end
 
   should 'RSS not be saved as node' do
@@ -670,6 +670,29 @@ class DisplayContentBlockTest < ActiveSupport::TestCase
     block.chosen_attributes = ['body']
    
     assert block.display_attribute?('body')
+  end
+
+  should 'blog_picture be false by default' do
+    block = DisplayContentBlock.new
+    assert !block.blog_picture
+  end
+
+  should 'blog_picture is being stored and restored from database as true' do
+    block = DisplayContentBlock.new
+    block.blog_picture = true
+    block.save
+    block.reload
+
+    assert block.blog_picture
+  end
+
+  should 'blog_picture is being stored and restored from database as false' do
+    block = DisplayContentBlock.new
+    block.blog_picture = false
+    block.save
+    block.reload
+
+    assert !block.blog_picture
   end
 
 end
