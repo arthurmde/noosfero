@@ -3,6 +3,8 @@ class DisplayContentBlock < Block
   settings_items :nodes, :type => Array, :default => []
   settings_items :parent_nodes, :type => Array, :default => []
   settings_items :chosen_attributes, :type => Array, :default => ['title']
+  settings_items :item_count, :type => Integer, :default => 1
+  settings_items :blog_picture, :type => :boolean, :default => false
 
   def self.description
     _('Display your contents')
@@ -26,10 +28,10 @@ class DisplayContentBlock < Block
       parent_articles = parent_articles + get_parent(article) unless parent_articles.include?(article.parent_id)
     end
     self.parent_nodes = parent_articles
-    self.nodes = articles.map{|a| a.id if a.is_a?(TextArticle) }.compact
+    self.nodes = articles.map{|a| a.id if a.is_a?(Event) || a.is_a?(TextArticle) }.compact
   end
 
-  VALID_CONTENT = ['RawHTMLArticle', 'TextArticle', 'TextileArticle', 'TinyMceArticle', 'Folder', 'Blog', 'Forum']
+  VALID_CONTENT = ['Event', 'RawHTMLArticle', 'TextArticle', 'TextileArticle', 'TinyMceArticle', 'Folder', 'Blog', 'Forum']
 
   def articles_of_parent(parent = nil)
     return [] if self.holder.nil?
@@ -39,15 +41,31 @@ class DisplayContentBlock < Block
   include ActionController::UrlWriter
   def content(args={})
     docs = owner.articles.find(:all, :conditions => {:id => self.nodes})
+    docs = docs.reverse
+    docs = docs[0, self.item_count]
     block_title(title) +
-    content_tag('ul', docs.map {|item|  
+    (self.blog_picture ? (self.parent_nodes.first.nil? ? '' : (Blog.find(self.parent_nodes.first).image.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename()))) : '') +
+     content_tag('ul', docs.map {|item|  
       content_tag('li', 
         (display_attribute?('title') ? content_tag('div', link_to(h(item.title), item.url), :class => 'title') : '') +
         (display_attribute?('abstract') ? content_tag('div', item.abstract ,:class => 'lead') : '') +
-        (display_attribute?('body') ? content_tag('div', item.body ,:class => 'body') : '')
+        (display_attribute?('body') ? content_tag('div', item.body ,:class => 'body') : '') 
       )
-    }.join("\n"))
+    }.join("\n")) 
+  end
 
+  def footer
+    #owner_id = owner.identifier
+    #docs = owner.articles.find(:all, :conditions => {:id => self.nodes})
+    #lambda do
+    #  link_to s_('articles|View all'), :controller => 'search', :action => 'articles'
+    #end
+    return nil unless self.owner.is_a?(Profile)
+
+    profile = self.owner
+    lambda do
+      link_to _('View All'), :profile => profile.identifier, :controller => 'content_viewer', :action => 'view_page', :page => 'blog'
+    end
   end
 
   def url_params
