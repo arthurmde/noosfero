@@ -222,7 +222,9 @@ class BlogTest < ActiveSupport::TestCase
     p = create_user('testuser').person
     blog = Blog.create!(:name =>'Test Blog', :profile => p, :image_builder => {:uploaded_data => fixture_file_upload('/files/rails.png', 'image/png')})
     blog.save!
+
     assert_equal blog.image(true).filename,'rails.png'
+     
   end
 
 end
