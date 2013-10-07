@@ -217,5 +217,12 @@ class BlogTest < ActiveSupport::TestCase
     fast_create(TextileArticle, :parent_id => blog.id)
     assert ! blog.empty?
   end
+  
+  should 'blog have image when image cover is uploaded' do
+    p = create_user('testuser').person
+    blog = Blog.create!(:name =>'Test Blog', :profile => p, :image_builder => {:uploaded_data => fixture_file_upload('/files/rails.png', 'image/png')})
+    blog.save!
+    assert blog.image.public_filename,'/files/rails.png'
+  end
 
 end
