@@ -109,3 +109,10 @@ Feature: blog
     And I follow "New content"
     When I follow "Blog"
     Then I should see "Tag list"
+
+    
+  Scenario: display image block
+    Given I go to joaosilva's control panel
+    And I follow "Configure blog"
+    When I upload a file with valid data
+    
