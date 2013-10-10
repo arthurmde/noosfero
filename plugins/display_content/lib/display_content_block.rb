@@ -5,6 +5,7 @@ class DisplayContentBlock < Block
   settings_items :chosen_attributes, :type => Array, :default => ['title']
   settings_items :item_count, :type => Integer, :default => 1
   settings_items :blog_picture, :type => :boolean, :default => false
+  settings_items :selected_folder, :type => Integer
 
   def self.description
     _('Display your contents')
@@ -13,22 +14,17 @@ class DisplayContentBlock < Block
   def help
     _('This block displays articles chosen by you. You can edit the block to select which of your articles is going to be displayed in the block.')
   end
-
-  def checked_nodes= params
-    return self.nodes if self.holder.nil?
-    articles = []
-    parent_articles = []
-    self.holder.articles.find(params.keys).map do |article|
+  
+  def parents
+    selected = []
+    
+    self.holder.articles.find_all.map do |article|
       if article.folder?
-        articles = articles + article.children
-        parent_articles << article.id
-      else
-        articles<< article
+        selected << article
       end
-      parent_articles = parent_articles + get_parent(article) unless parent_articles.include?(article.parent_id)
     end
-    self.parent_nodes = parent_articles
-    self.nodes = articles.map{|a| a.id if a.is_a?(Event) || a.is_a?(TextArticle) }.compact
+    
+    selected
   end
 
   VALID_CONTENT = ['Event', 'RawHTMLArticle', 'TextArticle', 'TextileArticle', 'TinyMceArticle', 'Folder', 'Blog', 'Forum']
@@ -40,7 +36,7 @@ class DisplayContentBlock < Block
 
   include ActionController::UrlWriter
   def content(args={})
-    docs = owner.articles.find(:all, :conditions => {:id => self.nodes})
+    docs = owner.articles.find(:all, :conditions => {:id => self.selected_folder})
     docs = docs.reverse
     docs = docs[0, self.item_count]
     block_title(title) +

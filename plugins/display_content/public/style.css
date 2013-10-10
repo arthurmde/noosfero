@@ -27,6 +27,10 @@
   overflow: hidden;
 }
 
+#box-organizer .display-content-block {
+  overflow: visible;
+}
+
 #content .display-content-block li {
   list-style-image: url(imgs/li-recent.gif);
   padding: 5px 0px;

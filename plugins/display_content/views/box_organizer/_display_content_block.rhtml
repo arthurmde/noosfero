@@ -2,44 +2,31 @@
 
 <h3> <%= _('Choose which attributes should be displayed:') %> </h3>
 <ul class='display_attributes'>
-  <li>  <%= _('Title: ')%> <%= check_box_tag "block[chosen_attributes][]", 'title', @block.display_attribute?('title') %> </li>
-  <li>  <%= _('Abstract: ')%> <%= check_box_tag "block[chosen_attributes][]", 'abstract', @block.display_attribute?('abstract') %> </li>
-  <li>  <%= _('Body: ')%> <%= check_box_tag "block[chosen_attributes][]", 'body', @block.display_attribute?('body') %> </li>
+  <li>  <%= labelled_form_field( _('Title: '), check_box_tag("block[chosen_attributes][]", 'title', @block.display_attribute?('title') )) %> </li>
+  <li>  <%= labelled_form_field( _('Abstract: '), check_box_tag("block[chosen_attributes][]", 'abstract', @block.display_attribute?('abstract'))) %> </li>
+  <li>  <%= labelled_form_field( _('Body: '), check_box_tag("block[chosen_attributes][]", 'body', @block.display_attribute?('body'))) %> </li>
+  
 </ul>
 
-<h3> <%= _('Choose which content should be displayed:') %> </h3>
+
 <div id="display_content">
-
+<%=
+labelled_form_field(_('Choose which content should be displayed:'),
+  select_tag(
+      'block[selected_folder]',
+      options_for_select(@block.parents.map {|node| [node.title, node.id]}, @block.selected_folder)
+  )
+)
+%>
 </div>
-
-<script type="text/javascript" >
-
-jQuery_1_8_3("#display_content").jstree({
-   plugins : ["themes","json_data", "checkbox"],
-   checkbox : {
-     real_checkboxes : true, 
-     real_checkboxes_names : function (n) { return [("block[checked_nodes[" + n.attr('node_id') + "]]"), 1]; } 
-   },
-   themes : {"theme" : "classic", "icons" : true, "url": "/plugins/display_content/javascripts/jstree/themes/classic/style.css"},
-   json_data : {
-     ajax : { 
-         url : '<%= url_for @block.url_params %>', 
-         async: true,
-         data : function (m) { 
-           return m.attr ? {"id" : m.attr("node_id")} : {};
-         }
-       }
-   }
-});
-
-</script>
 
 <h3> <%= _('Choose how many items will be displayed:') %> </h3>
 <div id="display_count">
 	<%= text_field_tag 'block[item_count]', @block.item_count, :size => 3, :maxlength => 5 %>
 </div>
 
-<% unless @block.parent_nodes.blank? %>
+
+<% unless @block.parents.blank? %>
 <h3> <%= _('Display Blog Image:') %>  </h3> 
 <div>
 <%= hidden_field_tag 'block[blog_picture]', false %> 
