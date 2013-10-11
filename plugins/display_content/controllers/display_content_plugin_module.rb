@@ -11,6 +11,7 @@ module DisplayContentPluginController
 
   protected
 
+  /*
   def get_node(block, articles)
       nodes = []
       articles.map do |article|
@@ -28,5 +29,5 @@ module DisplayContentPluginController
      end
      nodes
   end
-
+  */
 end

@@ -19,7 +19,7 @@ class DisplayContentBlock < Block
     selected = []
     
     self.holder.articles.find_all.map do |article|
-      if article.folder?
+      if article.blog?
         selected << article
       end
     end
@@ -36,12 +36,12 @@ class DisplayContentBlock < Block
 
   include ActionController::UrlWriter
   def content(args={})
-    docs = owner.articles.find(:all, :conditions => {:id => self.selected_folder})
-    docs = docs.reverse
-    docs = docs[0, self.item_count]
+    root = Blog.find(self.selected_folder)
+    children = Article.where('parent_id = ? AND type NOT LIKE ?', root.id, 'RssFeed').limit(self.item_count).order('created_at DESC')
+        
     block_title(title) +
-    (self.blog_picture ? (self.parent_nodes.first.nil? ? '' : (Blog.find(self.parent_nodes.first).image.nil? ? '': image_tag(Blog.find(self.parent_nodes.first).image.public_filename()))) : '') +
-     content_tag('ul', docs.map {|item|  
+    (self.blog_picture ? image_tag(root.image(:big).public_filename(), :size=>'100x100', :alt=>title) : '' ) +
+    content_tag('ul', children.map {|item|  
       content_tag('li', 
         (display_attribute?('title') ? content_tag('div', link_to(h(item.title), item.url), :class => 'title') : '') +
         (display_attribute?('abstract') ? content_tag('div', item.abstract ,:class => 'lead') : '') +
