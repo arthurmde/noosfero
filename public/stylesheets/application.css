@@ -3616,7 +3616,7 @@ div#article-parent {
   display: block;
   overflow: auto;
   overflow-x: hidden;
-  height: 90%;
+  height: 80%;
   background: white;
   border: none;
 }
