@@ -64,6 +64,9 @@ class Noosfero::Plugin
         require init.gsub(/.rb$/, '') if File.file? init
       end
 
+      # load extensions
+      Dir[File.join(dir, 'lib', 'ext', '*.rb')].each {|file| require_dependency file }
+
       # load class
       klass(plugin_name)
     end
@@ -152,6 +155,7 @@ class Noosfero::Plugin
 
   # Here the developer may specify the events to which the plugins can
   # register and must return true or false. The default value must be false.
+  # Must also explicitly define its returning variables.
 
   # -> If true, noosfero will include plugin_dir/public/style.css into
   # application
@@ -159,16 +163,19 @@ class Noosfero::Plugin
     false
   end
 
-  # Here the developer should specify the events to which the plugins can
-  # register to. Must be explicitly defined its returning
-  # variables.
-
   # -> Adds buttons to the control panel
   # returns = { :title => title, :icon => icon, :url => url }
   #   title = name that will be displayed.
   #   icon  = css class name (for customized icons include them in a css file).
   #   url   = url or route to which the button will redirect.
   def control_panel_buttons
+    nil
+  end
+
+  # -> Customize profile block design and behavior
+  # (overwrites profile_image_link function)
+  # returns = lambda block that creates html code.
+  def profile_image_link(profile, size, tag, extra_info)
     nil
   end
 
