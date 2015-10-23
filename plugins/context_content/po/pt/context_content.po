@@ -11,8 +11,8 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.1-882-g0c116ba\n"
-"POT-Creation-Date: 2015-09-25 15:42-0000\n"
+"Project-Id-Version: 1.2.1+spb4-149-g979ec50\n"
+"POT-Creation-Date: 2015-10-23 14:10-0000\n"
 "PO-Revision-Date: 2014-12-18 18:40-0200\n"
 "Last-Translator: Luciano Prestes Cavalcanti <lucianopcbr@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/noosfero/"
@@ -24,11 +24,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 2.0\n"
 
-#: plugins/context_content/lib/context_content_plugin/context_content_block.rb:16
+#: plugins/context_content/lib/context_content_plugin/context_content_block.rb:17
 msgid "Display context content"
 msgstr "Mostrar conteúdo contextual"
 
-#: plugins/context_content/lib/context_content_plugin/context_content_block.rb:20
+#: plugins/context_content/lib/context_content_plugin/context_content_block.rb:21
 msgid "This block displays content based on context."
 msgstr "Este bloco apresenta conteúdo baseado no contexto."
 
@@ -45,13 +45,17 @@ msgid "Show content image"
 msgstr "Mostrar imagem do conteúdo"
 
 #: plugins/context_content/views/box_organizer/context_content_plugin/_context_content_block.html.erb:5
+msgid "Use parent folder title instead of the block title"
+msgstr "Usar o título da pasta pai no lugar do título do bloco"
+
+#: plugins/context_content/views/box_organizer/context_content_plugin/_context_content_block.html.erb:6
 msgid "Show parent content when children is empty"
 msgstr "Mostrar conteúdo do pai quando os filhos estão vazios"
 
-#: plugins/context_content/views/box_organizer/context_content_plugin/_context_content_block.html.erb:8
+#: plugins/context_content/views/box_organizer/context_content_plugin/_context_content_block.html.erb:9
 msgid "Display content types:"
 msgstr "Mostrar tipos de conteúdos:"
 
-#: plugins/context_content/views/box_organizer/context_content_plugin/_context_content_block.html.erb:14
+#: plugins/context_content/views/box_organizer/context_content_plugin/_context_content_block.html.erb:15
 msgid "more"
 msgstr "mais"
