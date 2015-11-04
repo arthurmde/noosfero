@@ -177,11 +177,14 @@ class PersonTest < ActiveSupport::TestCase
 
   should 'create a default set of articles' do
     blog = build(Blog)
+
     Person.any_instance.stubs(:default_set_of_articles).returns([blog])
     person = create(User).person
 
     assert_kind_of Blog, person.articles.find_by_path(blog.path)
+    assert person.articles.find_by_path(blog.path).published?
     assert_kind_of RssFeed, person.articles.find_by_path(blog.feed.path)
+    assert person.articles.find_by_path(blog.feed.path).published?
   end
 
   should 'create a default set of blocks' do
