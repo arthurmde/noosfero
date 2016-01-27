@@ -22,6 +22,7 @@ class MyNetworkBlockTest < ActiveSupport::TestCase
   should 'display my-profile' do
     self.expects(:render).with(:file => 'blocks/my_network', :locals => {
         :title => 'My network',
+        :subtitle => '',
         :owner => owner
     })
     instance_eval(&block.content)

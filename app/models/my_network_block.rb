@@ -19,6 +19,7 @@ class MyNetworkBlock < Block
     proc do
       render :file => 'blocks/my_network', :locals => {
         :title => block.title,
+        :subtitle => block.subtitle,
         :owner => block.owner
       }
     end

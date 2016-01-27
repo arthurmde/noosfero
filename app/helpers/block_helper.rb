@@ -6,6 +6,12 @@ module BlockHelper
     content_tag 'h3', content_tag('span', h(title)), :class => tag_class
   end
 
+  def block_subtitle(subtitle = "")
+    tag_class = 'block-subtitle'
+    tag_class += ' empty' if subtitle.empty?
+    content_tag('h4', content_tag('span', h(subtitle)), :class => tag_class)
+  end
+
   def highlights_block_config_image_fields(block, image={}, row_number=nil)
     "
     <tr class=\"image-data-line\" data-row-number='#{row_number}'>

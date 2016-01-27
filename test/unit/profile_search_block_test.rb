@@ -16,7 +16,7 @@ class ProfileSearchBlockTest < ActiveSupport::TestCase
     block = ProfileSearchBlock.new
     block.stubs(:owner).returns(person)
 
-    self.expects(:render).with(:file => 'blocks/profile_search', :locals => { :title => block.title})
+    self.expects(:render).with(:file => 'blocks/profile_search', :locals => { :title => block.title, :subtitle => block.subtitle })
     instance_eval(& block.content)
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921140802) do
+ActiveRecord::Schema.define(version: 20160127141855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,6 +193,7 @@ ActiveRecord::Schema.define(version: 20150921140802) do
     t.boolean  "mirror",          default: false
     t.integer  "mirror_block_id"
     t.integer  "observers_id"
+    t.string   "subtitle",        default: ""
   end
 
   add_index "blocks", ["box_id"], name: "index_blocks_on_box_id", using: :btree

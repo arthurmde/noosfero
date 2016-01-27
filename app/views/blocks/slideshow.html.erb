@@ -1,4 +1,5 @@
 <%= block_title(block.title) %>
+<%= block_subtitle(block.subtitle) %>
 <% if images %>
   <% description = images.any? { |img| !img.abstract.blank? } %>
   <div class='slideshow-border<%= (description ? ' with-descriptions' : '')%>'>

@@ -6,8 +6,12 @@ class ProfileSearchBlock < Block
 
   def content(args={})
     title = self.title
+    subtitle = self.subtitle
     lambda do |_|
-      render :file => 'blocks/profile_search', :locals => { :title => title }
+      render :file => 'blocks/profile_search', :locals => {
+        :title => title,
+        :subtitle => subtitle
+      }
     end
   end
 
